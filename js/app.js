@@ -3,22 +3,26 @@ let pessoa;
 let buttonAdicionaPaciente = document.querySelector("#adicionar-paciente");
 let form = document.querySelector("form");
 
-//Z
-
+//Botão Enviar dados
 buttonAdicionaPaciente.addEventListener("click", function (event) {
   event.preventDefault();
   let pessoa = getFormulario(form);
   const pacienteTR = montaTabela(pessoa);
 
+  console.log(validaPaciente(pessoa));
+
   if (validaAltura(form.altura.value) || validaPeso(form.peso.value)) {
-    alert("Erro de validação! verifique os dados digitado e tente novamente");
+    let erro = document.querySelector("#msg-erro");
+    erro.textContent =
+      "Erro de validação! verifique os dados digitado e tente novamente";
+
     return;
   }
-  //adicionar na table
+
   //adicionar na table
   let tabela = document.querySelector("#tabela-pacientes");
   tabela.appendChild(pacienteTR);
-  console.log(pacienteTR);
+  //console.log(pacienteTR);
 
   form.reset();
 });
@@ -76,3 +80,20 @@ function validaAltura(altura) {
 }
 
 //console.log(validaPeso(50));
+
+function validaPaciente(pessoa) {
+  if (validaPeso(peso)) {
+    return "ok";
+  } else {
+    return "Peso inválido";
+  }
+  if (validaAltura(altura)) {
+    return "";
+  } else {
+    return "Altura Inválida";
+  }
+  return;
+}
+
+//console.log(validaPeso(-50));
+//console.log(validaPaciente(pessoa));
