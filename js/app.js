@@ -14,7 +14,7 @@ buttonAdicionaPaciente.addEventListener("click", function (event) {
     alert("Erro de validação! verifique os dados digitado e tente novamente");
     return;
   }
-
+  //adicionar na table
   //adicionar na table
   let tabela = document.querySelector("#tabela-pacientes");
   tabela.appendChild(pacienteTR);
