@@ -8,19 +8,14 @@ for (let i = 0; i < tbpacientes.length; i++) {
   let tdAltura = paciente.querySelector(".info-altura");
   let altura = tdAltura.textContent;
 
-  //let pesoValido = true;
-  let pesoValido = validaPeso(peso);
-  //let alturaValido = true;
-  let alturaValido = validaAltura(altura);
-
-  if (pesoValido) {
+  if (!validaPeso(peso)) {
     let ivalidImc = paciente.querySelector(".info-imc");
     ivalidImc.textContent = "Peso Inválido";
     paciente.style.backgroundColor = "red";
     paciente.classList.add("ivalid");
     //pesoValido = false;
   }
-  if (alturaValido) {
+  if (!validaAltura(altura)) {
     let ivalidImc = paciente.querySelector(".info-imc");
     ivalidImc.textContent = "Altura Inválido";
     paciente.style.backgroundColor = "orange";
@@ -28,7 +23,7 @@ for (let i = 0; i < tbpacientes.length; i++) {
     //alturaValido = false;
   }
 
-  if (!pesoValido && !alturaValido) {
+  if (validaPeso(peso) && validaAltura(altura)) {
     let imc = calImc(peso, altura);
     let imcPaciente = paciente.querySelector(".info-imc");
     imcPaciente.innerHTML = imc;

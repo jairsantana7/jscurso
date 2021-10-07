@@ -1,21 +1,16 @@
 //titulo.addEventListener("click", mostrarMsg);
 let pessoa;
 let buttonAdicionaPaciente = document.querySelector("#adicionar-paciente");
-let form = document.querySelector("form");
-
+let form = document.querySelector("#form-paciente");
 //Botão Enviar dados
 buttonAdicionaPaciente.addEventListener("click", function (event) {
   event.preventDefault();
   let pessoa = getFormulario(form);
   const pacienteTR = montaTabela(pessoa);
+  let erros = validaPaciente(pessoa);
 
-  console.log(validaPaciente(pessoa));
-
-  if (validaAltura(form.altura.value) || validaPeso(form.peso.value)) {
-    let erro = document.querySelector("#msg-erro");
-    erro.textContent =
-      "Erro de validação! verifique os dados digitado e tente novamente";
-
+  if (erros.length > 0) {
+    exibirMensagemError(erros);
     return;
   }
 
@@ -54,6 +49,7 @@ function getFormulario(form) {
   return pessoa;
 }
 
+//monta <td>
 function montaTD(dado, classe) {
   let td = document.createElement("td");
   td.textContent = dado;
@@ -61,39 +57,52 @@ function montaTD(dado, classe) {
   return td;
 }
 
-//console.log(getFormulario(form));
-
+//validar peso
 function validaPeso(peso) {
-  if (peso >= 1000 || peso <= 0) {
+  if (peso >= 0 && peso <= 1000) {
     return true;
   } else {
     return false;
   }
 }
-
+//validar altura
 function validaAltura(altura) {
-  if (altura >= 2000 || altura <= 0) {
+  if (altura <= 2000 && altura >= 0) {
     return true;
   } else {
     return false;
   }
 }
 
-//console.log(validaPeso(50));
+//function exibir erro
 
-function validaPaciente(pessoa) {
-  if (validaPeso(peso)) {
-    return "ok";
-  } else {
-    return "Peso inválido";
-  }
-  if (validaAltura(altura)) {
-    return "";
-  } else {
-    return "Altura Inválida";
-  }
-  return;
+function exibirMensagemError(erros) {
+  let ul = document.querySelector("#msg-erro");
+  ul.textContent = "";
+  erros.forEach(erro => {
+    let li = document.createElement("li");
+    li.textContent = erro;
+    ul.appendChild(li);
+  });
 }
 
-//console.log(validaPeso(-50));
-//console.log(validaPaciente(pessoa));
+//validar paciente
+function validaPaciente(pessoa) {
+  const erros = [];
+  if (pessoa.nome.length == 0) {
+    erros.push("O nome não pode ser em branco");
+  }
+
+  if (pessoa.gordura.length == 0) {
+    erros.push("A % de gordura deve ser preenchina");
+  }
+
+  if (!validaPeso(peso.value) || peso.value == 0) {
+    erros.push("Peso inválido");
+  }
+  if (!validaAltura(altura.value) || altura.value == 0) {
+    erros.push("Altura inválido");
+  }
+
+  return erros;
+}
