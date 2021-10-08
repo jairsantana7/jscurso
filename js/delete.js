@@ -1,11 +1,10 @@
 let paciente = document.querySelectorAll(".paciente");
-let tabela = document.querySelector("table");
+let tabela = document.querySelector("#tabela-pacientes");
 
 deletarPaciente(tabela);
 
 //delet Paciente
 function deletarPaciente(tabela) {
-  console.log(tabela);
   tabela.addEventListener("dblclick", function (e) {
     //e = e.target;
     e.target.parentNode.classList.add("fade-out");
@@ -29,7 +28,7 @@ function deletarPaciente(tabela) {
 
 //console.log(paciente);
 //console.log(getFormulario(form));
-console.log(deletarPaciente(paciente));
+//console.log(deletarPaciente(paciente));
 //console.log(document.querySelectorAll(".paciente"));
 
 //document.querySelectorAll(".paciente")
