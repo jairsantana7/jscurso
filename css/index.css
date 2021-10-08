@@ -136,3 +136,8 @@ button:disabled {
   background: red;
   color: #fff;
 }
+
+.fade-out {
+  opacity: 0;
+  transition: 2s;
+}

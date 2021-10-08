@@ -1,17 +1,23 @@
 let paciente = document.querySelectorAll(".paciente");
 let tabela = document.querySelector("table");
 
-function deletarPaciente(pessoa) {
-  let paciente = pessoa;
-  paciente.console.log(paciente);
-}
+deletarPaciente(tabela);
 
-tabela.addEventListener("dblclick", function (e) {
-  let eventoClick = e.target;
-  let eventoPai = eventoClick.parentNode;
-  eventoPai.remove();
-});
-console.log(tabela);
+//delet Paciente
+function deletarPaciente(tabela) {
+  console.log(tabela);
+  tabela.addEventListener("dblclick", function (e) {
+    //e = e.target;
+    e.target.parentNode.classList.add("fade-out");
+    //e.target.parentNode.classList.add("fade-out");
+    let eventoClick = e.target;
+    let eventoPai = eventoClick.parentNode;
+
+    setTimeout(function () {
+      eventoPai.remove();
+    }, 1000);
+  });
+}
 
 // paciente.forEach(paciente => {
 //   paciente.addEventListener("dblclick", function (event) {
