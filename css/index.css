@@ -141,3 +141,9 @@ button:disabled {
   opacity: 0;
   transition: 2s;
 }
+
+.none {
+  transition: 2s;
+  display: none;
+  visibility: hidden;
+}
