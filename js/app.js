@@ -1,8 +1,9 @@
 //titulo.addEventListener("click", mostrarMsg);
-let pessoa;
+//let pessoa;
 let buttonAdicionaPaciente = document.querySelector("#adicionar-paciente");
 let form = document.querySelector("#form-paciente");
 //Botão Enviar dados
+
 buttonAdicionaPaciente.addEventListener("click", function (event) {
   event.preventDefault();
   let pessoa = getFormulario(form);
@@ -13,14 +14,15 @@ buttonAdicionaPaciente.addEventListener("click", function (event) {
     exibirMensagemError(erros);
     return;
   }
-
-  //adicionar na table
-  let tabela = document.querySelector("#tabela-pacientes");
-  tabela.appendChild(pacienteTR);
-  //console.log(pacienteTR);
-
+  adicionaPaciente(pacienteTR);
   form.reset();
 });
+
+function adicionaPaciente(paciente) {
+  let tabela = document.querySelector("#tabela-pacientes");
+  tabela.appendChild(paciente);
+  return paciente;
+}
 
 //cria linhas
 
